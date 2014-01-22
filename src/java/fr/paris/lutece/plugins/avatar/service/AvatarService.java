@@ -33,6 +33,8 @@
  */
 package fr.paris.lutece.plugins.avatar.service;
 
+import fr.paris.lutece.portal.service.plugin.Plugin;
+import fr.paris.lutece.portal.service.plugin.PluginService;
 import fr.paris.lutece.portal.service.spring.SpringContextService;
 
 
@@ -41,10 +43,27 @@ import fr.paris.lutece.portal.service.spring.SpringContextService;
  */
 public class AvatarService
 {
+    private static final String PLUGIN_NAME = "avatar";
+    private static final String BEAN_PROVIDER = "avatar.provider";
+    
+    
+    /**
+     * 
+     * @param strId
+     * @return 
+     */
     public static String getAvatar( String strId )
     {
-        AvatarProvider provider = SpringContextService.getBean( "avatar.provider" );
+        String strAvatar = "";
+    
+        Plugin plugin = PluginService.getPlugin( PLUGIN_NAME );
+        
+        if( plugin.isInstalled() )
+        {    
+            AvatarProvider provider = SpringContextService.getBean( BEAN_PROVIDER );
+            strAvatar = provider.getAvatar( strId );
+        }
 
-        return provider.getAvatar( strId );
+        return strAvatar;
     }
 }

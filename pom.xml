@@ -36,4 +36,12 @@
         <jiraProjectName>AVATAR</jiraProjectName>
         <jiraComponentId></jiraComponentId>
     </properties>
+    
+    
+    <scm>
+        <connection>scm:svn:http://dev.lutece.paris.fr/svn/lutece/portal/trunk/plugins/extends/plugin-avatar</connection>
+        <developerConnection>scm:svn:https://dev.lutece.paris.fr/svn/lutece/portal/trunk/plugins/extends/plugin-avatar</developerConnection>
+        <url>http://dev.lutece.paris.fr/viewvc/lutece/portal/trunk/plugins/extends/plugin-avatar</url>
+    </scm>
+
 </project>

@@ -9,6 +9,10 @@
             <item name="Home" href="index.html"/>
         </menu>
         
+        <menu name="Connected links">
+            <item name="Gravatar site" href="http://gravatar.com"/>
+        </menu>
+        
         <menu name="Downloads" inherit="bottom">
             <item name="Released versions" href="../../stable_builds/plugins/plugin-avatar/"/>
             <item name="Nightly builds" href="../../nightly_builds/plugins/plugin-avatar/" />

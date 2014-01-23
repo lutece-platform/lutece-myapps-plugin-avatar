@@ -1,23 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document>
     <properties>
-        <title>Plugin avatar</title>
+        <title>Plugin Avatar</title>
     </properties>
     <body>
-        <section name="Plugin avatar">
-            <!--
-            <p>
-                <img src="images/avatar.png" />
-            </p>
-            -->
+        <section name="Plugin Avatar">
             <subsection name="Introduction">
-                <p></p>
+                <p>
+                    Ce plugin permet insérer dans des contenus, typiquement des commentaires, 
+                    l'avatar public (photo ou autre) de son auteur.
+                </p>
+                <p>
+                    Il dispose d'une implémentation de fournisseur d'avatars permettant de récupérer
+                    ces derniers à partir du site Gravatar.com. 
+                </p>
+                <p>
+                    <img src="images/gravatar.jpg" />
+                </p>
             </subsection>
             <subsection name="Configuration">
-                <p></p>
+                <p>
+                    Le choix de l'implémentation est défini dans le fichier <code>avatar_context.xml</code>.
+                    L'implémentation par défaut est celle s'appuyant sur Gravatar.
+                </p>
+                <p>
+                    Les images par défaut proposées par Gravatar (mistery man, formes géométriques, monstres, ...)
+                    sont configurables dans le fichier <code>gravatar.properties</code>
+                </p>
+                <code>
+                    <pre># avatar properties file
+
+#######################################################################################################
+# Default values
+#
+# mm: (mystery-man) a simple, cartoon-style silhouetted outline of a person (does not vary by email hash)
+# identicon: a geometric pattern based on an email hash
+# monsterid: a generated 'monster' with different colors, faces, etc
+# wavatar: generated faces with differing features and backgrounds
+# retro: awesome generated, 8-bit arcade-style pixelated faces
+# blank: a transparent PNG image (border added to HTML below for demonstration purposes)
+
+avatar.gravatar.default=mm
+                    </pre>
+                </code>
             </subsection>
             <subsection name="Usage">
-                <p></p>
+                <p>
+                    Ce plugin est utilisé dans les plugins Digglike et ExtendComment. 
+                </p>
             </subsection>
         </section>
     </body>

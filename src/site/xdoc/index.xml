@@ -1,23 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document>
     <properties>
-        <title>Plugin avatar</title>
+        <title>Avatar plugin</title>
     </properties>
     <body>
-        <section name="Plugin avatar">
-            <!--
-            <p>
-                <img src="images/avatar.png" />
-            </p>
-            -->
+        <section name="Avatar plugin">
             <subsection name="Introduction">
-                <p></p>
+                <p>
+                    This plugin allows to insert into contents, typically comments
+                    the public avatar (photo or other) of its author.
+                </p>
+                <p>
+                    It has an avatar provider implementation to recover
+                    them from the site Gravatar.com.
+                </p>
+                <p>
+                    <img src="images/gravatar.jpg" />
+                </p>
             </subsection>
             <subsection name="Configuration">
-                <p></p>
+                <p>
+                    The implementation is defined in the file  <code>avatar_context.xml</code>.
+                    The default implementation is based on Gravatar.
+                </p>
+                <p>
+                    Default avatars are defined in the file <code>gravatar.properties</code>
+                </p>
+                <code>
+                    <pre># avatar properties file
+
+#######################################################################################################
+# Default values
+#
+# mm: (mystery-man) a simple, cartoon-style silhouetted outline of a person (does not vary by email hash)
+# identicon: a geometric pattern based on an email hash
+# monsterid: a generated 'monster' with different colors, faces, etc
+# wavatar: generated faces with differing features and backgrounds
+# retro: awesome generated, 8-bit arcade-style pixelated faces
+# blank: a transparent PNG image (border added to HTML below for demonstration purposes)
+
+avatar.gravatar.default=mm
+                    </pre>
+                </code>
             </subsection>
             <subsection name="Usage">
-                <p></p>
+                <p>
+                    This plugin is used by Digglike and ExtendComment. 
+                </p>
             </subsection>
         </section>
     </body>

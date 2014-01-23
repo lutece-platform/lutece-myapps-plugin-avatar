@@ -35,6 +35,7 @@ package fr.paris.lutece.plugins.avatar.service;
 
 import fr.paris.lutece.portal.service.template.AppTemplateService;
 import fr.paris.lutece.portal.service.util.AppLogService;
+import fr.paris.lutece.portal.service.util.AppPropertiesService;
 import fr.paris.lutece.util.html.HtmlTemplate;
 
 import java.security.MessageDigest;
@@ -52,6 +53,8 @@ public class GravatarProvider implements AvatarProvider
 {
     private static final String TEMPLATE_GRAVATAR = "/admin/plugins/avatar/gravatar.html";
     private static final String MARK_HASH = "hash";
+    private static final String MARK_DEFAULT = "default";
+    private static final String PROPERTY_DEFAULT = "avatar.gravatar.default";
 
     @Override
     public String getAvatar( String strId )
@@ -73,8 +76,12 @@ public class GravatarProvider implements AvatarProvider
             }
 
             String strHash = sb.toString(  );
+            
+            String strDefault = AppPropertiesService.getProperty( PROPERTY_DEFAULT );
+            
             Map<String, Object> model = new HashMap<String, Object>(  );
             model.put( MARK_HASH, strHash );
+            model.put( MARK_DEFAULT, strDefault );
 
             HtmlTemplate t = AppTemplateService.getTemplate( TEMPLATE_GRAVATAR, Locale.getDefault(  ), model );
             strAvatar = t.getHtml(  );

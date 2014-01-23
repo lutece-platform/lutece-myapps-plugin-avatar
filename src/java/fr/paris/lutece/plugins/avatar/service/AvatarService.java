@@ -41,16 +41,22 @@ import fr.paris.lutece.portal.service.spring.SpringContextService;
 /**
  * Avatar Service
  */
-public class AvatarService
+public final class AvatarService
 {
     private static final String PLUGIN_NAME = "avatar";
     private static final String BEAN_PROVIDER = "avatar.provider";
     
     
+    /** Private constructor */
+    private AvatarService()
+    {
+        
+    }
+    
     /**
-     * 
-     * @param strId
-     * @return 
+     * Returns the HTML code to insert to display the avatar
+     * @param strId The avatar ID
+     * @return The HTML code
      */
     public static String getAvatar( String strId )
     {

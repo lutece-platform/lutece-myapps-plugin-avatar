@@ -1,25 +1,17 @@
-<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?><plug-in>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<plug-in>
     <name>avatar</name>
     <class>fr.paris.lutece.portal.service.plugin.PluginDefaultImplementation</class>
     <version>1.0.1</version>
-    <documentation/>
-    <installation/>
-    <changes/>
-    <user-guide/>
+    <documentation></documentation>
+    <installation></installation>
+    <changes></changes>
+    <user-guide></user-guide>
     <description>avatar.plugin.description</description>
     <provider>avatar.plugin.provider</provider>
     <provider-url>http://dev.lutece.paris.fr</provider-url>
-    <icon-url>images/admin/skin/feature_default_icon.png</icon-url>
+    <icon-url>images/admin/skin/plugins/avatar/avatar.png</icon-url>
     <copyright>Copyright (c) 2014 Mairie de Paris</copyright>
     <db-pool-required>0</db-pool-required>
     
-    <!-- Admin features parameters -->
-    <admin-features>
-    </admin-features>    
-  	<!-- XPages parameters -->
-    <applications>
-    </applications>
-	<!-- Portlet parameters -->
-    <portlets>
-   </portlets>
 </plug-in>

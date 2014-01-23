@@ -39,5 +39,10 @@ package fr.paris.lutece.plugins.avatar.service;
  */
 public interface AvatarProvider
 {
+    /**
+     * Returns the HTML code to insert the avatar
+     * @param strAvatarId The avatar ID (email for gravatar)
+     * @return The HTML code
+     */
     String getAvatar( String strAvatarId );
 }

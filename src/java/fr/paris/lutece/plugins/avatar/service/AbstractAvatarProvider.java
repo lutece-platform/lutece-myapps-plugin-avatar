@@ -33,61 +33,36 @@
  */
 package fr.paris.lutece.plugins.avatar.service;
 
-import fr.paris.lutece.portal.service.plugin.Plugin;
-import fr.paris.lutece.portal.service.plugin.PluginService;
-import fr.paris.lutece.portal.service.spring.SpringContextService;
+import fr.paris.lutece.portal.service.template.AppTemplateService;
+import fr.paris.lutece.util.html.HtmlTemplate;
+
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
 
 
 /**
- * Avatar Service
+ *
+ * Abstract Avatar provider
  */
-public final class AvatarService
+public abstract class AbstractAvatarProvider implements AvatarProvider
 {
-    private static final String PLUGIN_NAME = "avatar";
-    private static final String BEAN_PROVIDER = "avatar.provider";
-
-    /** Private constructor */
-    private AvatarService(  )
-    {
-    }
+    private static final String TEMPLATE_GRAVATAR = "/admin/plugins/avatar/avatar.html";
+    private static final String MARK_AVATAR_URL = "avatar_url";
 
     /**
-     * Returns the HTML code to insert to display the avatar
-     * @param strId The avatar ID
-     * @return The HTML code
+     * {@inheritDoc }
      */
-    public static String getAvatar( String strId )
+    @Override
+    public String getAvatar( String strId )
     {
-        String strAvatar = "";
+        String strAvatar;
+        Map<String, Object> model = new HashMap<String, Object>(  );
+        model.put( MARK_AVATAR_URL, getAvatarUrl( strId ) );
 
-        Plugin plugin = PluginService.getPlugin( PLUGIN_NAME );
-
-        if ( plugin.isInstalled(  ) )
-        {
-            AvatarProvider provider = SpringContextService.getBean( BEAN_PROVIDER );
-            strAvatar = provider.getAvatar( strId );
-        }
+        HtmlTemplate t = AppTemplateService.getTemplate( TEMPLATE_GRAVATAR, Locale.getDefault(  ), model );
+        strAvatar = t.getHtml(  );
 
         return strAvatar;
-    }
-
-    /**
-     * Returns the avatar Url
-     * @param strId The avatar ID
-     * @return The Url
-     */
-    public static String getAvatarUrl( String strId )
-    {
-        String strAvatarUrl = "";
-
-        Plugin plugin = PluginService.getPlugin( PLUGIN_NAME );
-
-        if ( plugin.isInstalled(  ) )
-        {
-            AvatarProvider provider = SpringContextService.getBean( BEAN_PROVIDER );
-            strAvatarUrl = provider.getAvatarUrl( strId );
-        }
-
-        return strAvatarUrl;
     }
 }

@@ -33,34 +33,37 @@
  */
 package fr.paris.lutece.plugins.avatar.service;
 
-import fr.paris.lutece.portal.service.template.AppTemplateService;
 import fr.paris.lutece.portal.service.util.AppLogService;
 import fr.paris.lutece.portal.service.util.AppPropertiesService;
-import fr.paris.lutece.util.html.HtmlTemplate;
+import fr.paris.lutece.util.url.UrlItem;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
 
 
 /**
  * Gravatar provider
  */
-public class GravatarProvider implements AvatarProvider
+public class GravatarProvider extends AbstractAvatarProvider
 {
-    private static final String TEMPLATE_GRAVATAR = "/admin/plugins/avatar/gravatar.html";
-    private static final String MARK_HASH = "hash";
-    private static final String MARK_DEFAULT = "default";
+    private static final String URL_GRAVATAR = "http://www.gravatar.com/avatar/";
     private static final String PROPERTY_DEFAULT = "avatar.gravatar.default";
+    private static final String PROPERTY_URL_GRAVATAR = "avatar.gravatar.url";
+    private static final String PROPERTY_SIZE = "avatar.gravatar.size";
+    private static final String PROPERTY_RATING = "avatar.gravatar.rating";
+    private static final String PARAMETER_DEFAULT = "d";
+    private static final String PARAMETER_SIZE = "s";
+    private static final String PARAMETER_RATING = "r";
+    private static final String DEFAULT_AVATAR = "mm";
 
+    /**
+     * {@inheritDoc }
+     */
     @Override
-    public String getAvatar( String strId )
+    public String getAvatarUrl( String strAvatarId )
     {
-        String strAvatar = "";
-        String strEmail = strId.toLowerCase(  );
+        String strUrl = "";
+        String strEmail = strAvatarId.toLowerCase(  );
         MessageDigest md;
 
         try
@@ -76,21 +79,34 @@ public class GravatarProvider implements AvatarProvider
             }
 
             String strHash = sb.toString(  );
-            
-            String strDefault = AppPropertiesService.getProperty( PROPERTY_DEFAULT );
-            
-            Map<String, Object> model = new HashMap<String, Object>(  );
-            model.put( MARK_HASH, strHash );
-            model.put( MARK_DEFAULT, strDefault );
 
-            HtmlTemplate t = AppTemplateService.getTemplate( TEMPLATE_GRAVATAR, Locale.getDefault(  ), model );
-            strAvatar = t.getHtml(  );
+            String strUrlGravatar = AppPropertiesService.getProperty( PROPERTY_URL_GRAVATAR, URL_GRAVATAR );
+            String strDefault = AppPropertiesService.getProperty( PROPERTY_DEFAULT, DEFAULT_AVATAR );
+
+            UrlItem url = new UrlItem( strUrlGravatar + strHash );
+            url.addParameter( PARAMETER_DEFAULT, strDefault );
+
+            String strSize = AppPropertiesService.getProperty( PROPERTY_SIZE );
+
+            if ( ( strSize != null ) && !"".equals( strSize ) )
+            {
+                url.addParameter( PARAMETER_SIZE, strSize );
+            }
+
+            String strRating = AppPropertiesService.getProperty( PROPERTY_RATING );
+
+            if ( ( strRating != null ) && !"".equals( strRating ) )
+            {
+                url.addParameter( PARAMETER_RATING, strRating );
+            }
+
+            strUrl = url.getUrl(  );
         }
         catch ( NoSuchAlgorithmException ex )
         {
-            AppLogService.error( "Error creating gravatar : " + ex.getMessage(  ), ex );
+            AppLogService.error( "Error getting gravatar : " + ex.getMessage(  ), ex );
         }
 
-        return strAvatar;
+        return strUrl;
     }
 }

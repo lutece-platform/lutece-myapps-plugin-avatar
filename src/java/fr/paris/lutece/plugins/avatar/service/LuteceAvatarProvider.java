@@ -40,17 +40,9 @@ import fr.paris.lutece.util.url.UrlItem;
 /**
  * Gravatar provider
  */
-public class GravatarProvider extends AbstractAvatarProvider
+public class LuteceAvatarProvider extends AbstractAvatarProvider
 {
-    private static final String URL_GRAVATAR = "http://www.gravatar.com/avatar/";
-    private static final String PROPERTY_DEFAULT = "avatar.gravatar.default";
-    private static final String PROPERTY_URL_GRAVATAR = "avatar.gravatar.url";
-    private static final String PROPERTY_SIZE = "avatar.gravatar.size";
-    private static final String PROPERTY_RATING = "avatar.gravatar.rating";
-    private static final String PARAMETER_DEFAULT = "d";
-    private static final String PARAMETER_SIZE = "s";
-    private static final String PARAMETER_RATING = "r";
-    private static final String DEFAULT_AVATAR = "mm";
+    private static final String PROPERTY_URL_AVATAR_SERVER = "avatar.lutece.avatarserver.url";
 
     /**
      * {@inheritDoc }
@@ -58,31 +50,9 @@ public class GravatarProvider extends AbstractAvatarProvider
     @Override
     public String getAvatarUrl( String strAvatarId )
     {
-        String strUrl;
-
         String strHash = getHashFromEmail( strAvatarId );
 
-        String strUrlGravatar = AppPropertiesService.getProperty( PROPERTY_URL_GRAVATAR, URL_GRAVATAR );
-        String strDefault = AppPropertiesService.getProperty( PROPERTY_DEFAULT, DEFAULT_AVATAR );
-
-        UrlItem url = new UrlItem( strUrlGravatar + strHash );
-        url.addParameter( PARAMETER_DEFAULT, strDefault );
-
-        String strSize = AppPropertiesService.getProperty( PROPERTY_SIZE );
-
-        if ( ( strSize != null ) && !"".equals( strSize ) )
-        {
-            url.addParameter( PARAMETER_SIZE, strSize );
-        }
-
-        String strRating = AppPropertiesService.getProperty( PROPERTY_RATING );
-
-        if ( ( strRating != null ) && !"".equals( strRating ) )
-        {
-            url.addParameter( PARAMETER_RATING, strRating );
-        }
-
-        strUrl = url.getUrl(  );
+        String strUrl = AppPropertiesService.getProperty( PROPERTY_URL_AVATAR_SERVER ) + strHash;
 
         return strUrl;
     }

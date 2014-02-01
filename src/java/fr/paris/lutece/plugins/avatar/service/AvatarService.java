@@ -36,6 +36,7 @@ package fr.paris.lutece.plugins.avatar.service;
 import fr.paris.lutece.portal.service.plugin.Plugin;
 import fr.paris.lutece.portal.service.plugin.PluginService;
 import fr.paris.lutece.portal.service.spring.SpringContextService;
+import fr.paris.lutece.portal.service.util.AppPropertiesService;
 
 
 /**
@@ -44,7 +45,7 @@ import fr.paris.lutece.portal.service.spring.SpringContextService;
 public final class AvatarService
 {
     private static final String PLUGIN_NAME = "avatar";
-    private static final String BEAN_PROVIDER = "avatar.provider";
+    private static final String PROPERTY_BEAN_PROVIDER = "avatar.provider";
 
     /** Private constructor */
     private AvatarService(  )
@@ -64,8 +65,7 @@ public final class AvatarService
 
         if ( plugin.isInstalled(  ) )
         {
-            AvatarProvider provider = SpringContextService.getBean( BEAN_PROVIDER );
-            strAvatar = provider.getAvatar( strId );
+            strAvatar = getProvider(  ).getAvatar( strId );
         }
 
         return strAvatar;
@@ -84,10 +84,20 @@ public final class AvatarService
 
         if ( plugin.isInstalled(  ) )
         {
-            AvatarProvider provider = SpringContextService.getBean( BEAN_PROVIDER );
-            strAvatarUrl = provider.getAvatarUrl( strId );
+            strAvatarUrl = getProvider(  ).getAvatarUrl( strId );
         }
 
         return strAvatarUrl;
+    }
+
+    /**
+     * Get the avatar provider
+     * @return The provider
+     */
+    private static AvatarProvider getProvider(  )
+    {
+        String strBean = AppPropertiesService.getProperty( PROPERTY_BEAN_PROVIDER );
+
+        return SpringContextService.getBean( strBean );
     }
 }

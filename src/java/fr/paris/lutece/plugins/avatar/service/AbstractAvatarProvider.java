@@ -34,7 +34,11 @@
 package fr.paris.lutece.plugins.avatar.service;
 
 import fr.paris.lutece.portal.service.template.AppTemplateService;
+import fr.paris.lutece.portal.service.util.AppLogService;
 import fr.paris.lutece.util.html.HtmlTemplate;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 import java.util.HashMap;
 import java.util.Locale;
@@ -64,5 +68,39 @@ public abstract class AbstractAvatarProvider implements AvatarProvider
         strAvatar = t.getHtml(  );
 
         return strAvatar;
+    }
+
+    /**
+     * Gat a MD5 hash from an email
+     *
+     * @param strAvatarEmail The email
+     * @return The hash
+     */
+    protected String getHashFromEmail( String strAvatarEmail )
+    {
+        String strHash = "";
+        String strEmail = strAvatarEmail.toLowerCase(  );
+        MessageDigest md;
+
+        try
+        {
+            md = MessageDigest.getInstance( "MD5" );
+
+            byte[] hash = md.digest( strEmail.getBytes(  ) );
+            StringBuilder sb = new StringBuilder(  );
+
+            for ( int i = 0; i < hash.length; i++ )
+            {
+                sb.append( Integer.toString( ( hash[i] & 0xff ) + 0x100, 16 ).substring( 1 ) );
+            }
+
+            strHash = sb.toString(  );
+        }
+        catch ( NoSuchAlgorithmException ex )
+        {
+            AppLogService.error( "Avatar service : Error hashing the email : " + ex.getMessage(  ), ex );
+        }
+
+        return strHash;
     }
 }

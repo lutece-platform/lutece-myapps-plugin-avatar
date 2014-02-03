@@ -7,4 +7,5 @@
     <bean id="avatar.provider.gravatar" class="fr.paris.lutece.plugins.avatar.service.GravatarProvider" />
     <bean id="avatar.provider.avatarserver" class="fr.paris.lutece.plugins.avatar.service.LuteceAvatarProvider" />
     
+    <bean id="avatar.mydashboard.avatarComponent" class="fr.paris.lutece.plugins.avatar.web.MyDashboardAvatarComponent" />
 </beans>

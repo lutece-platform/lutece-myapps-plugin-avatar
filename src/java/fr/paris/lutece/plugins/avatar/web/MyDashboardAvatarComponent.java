@@ -75,7 +75,7 @@ public class MyDashboardAvatarComponent extends MyDashboardComponent
             if ( user != null )
             {
                 String strAvatarModifyUrl = AppPropertiesService.getProperty(PROPERTY_MODIFY_URL);
-                String strAvatarUrl = AvatarService.getAvatarUrl( user.getUserInfo( LuteceUser.HOME_INFO_ONLINE_EMAIL));
+                String strAvatarUrl = AvatarService.getAvatarUrl( user.getEmail() );
                 
                 Map<String, Object> model = new HashMap<String, Object>( );
                 model.put( MARK_AVATAR_URL, strAvatarUrl );

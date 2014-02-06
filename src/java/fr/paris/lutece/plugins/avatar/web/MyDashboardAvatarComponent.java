@@ -72,7 +72,7 @@ public class MyDashboardAvatarComponent extends MyDashboardComponent
         if ( SecurityService.isAuthenticationEnable( ) )
         {
             LuteceUser user = SecurityService.getInstance( ).getRegisteredUser( request );
-            if ( user != null )
+            if ( ( user != null ) && ( user.getEmail() != null ) )
             {
                 String strAvatarModifyUrl = AppPropertiesService.getProperty(PROPERTY_MODIFY_URL);
                 String strAvatarUrl = AvatarService.getAvatarUrl( user.getEmail() );

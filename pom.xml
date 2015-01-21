@@ -50,9 +50,9 @@
     
     
     <scm>
-        <connection>scm:svn:http://dev.lutece.paris.fr/svn/lutece/portal/trunk/plugins/extends/plugin-avatar</connection>
-        <developerConnection>scm:svn:https://dev.lutece.paris.fr/svn/lutece/portal/trunk/plugins/extends/plugin-avatar</developerConnection>
-        <url>http://dev.lutece.paris.fr/viewvc/lutece/portal/trunk/plugins/extends/plugin-avatar</url>
+        <connection>scm:git:https://github.com/lutece-platform/lutece-myapps-plugin-avatar.git</connection>
+        <developerConnection>scm:git:https://github.com/lutece-platform/lutece-myapps-plugin-avatar.git</developerConnection>
+        <url>https://github.com/lutece-platform/lutece-myapps-plugin-avatar.git</url>
     </scm>
 
 </project>

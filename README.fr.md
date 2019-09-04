@@ -1,19 +1,19 @@
 ![](https://dev.lutece.paris.fr/jenkins/buildStatus/icon?job=myapps-plugin-avatar-deploy)
-# Avatar plugin
+# Plugin Avatar
 
 ## Introduction
 
-This plugin allows to insert into contents, typically comments the public avatar (photo or other) of its author.
+Ce plugin permet insérer dans des contenus, typiquement des commentaires, l'avatar public (photo ou autre) de son auteur.
 
-It has an avatar provider implementation to recover them from the site Gravatar.com.
+Il dispose d'une implémentation de fournisseur d'avatars permettant de récupérer ces derniers à partir du site Gravatar.com.
 
 ![](https://dev.lutece.paris.fr/plugins/plugin-avatar/images/gravatar.jpg)
 
 ## Configuration
 
-The implementation is defined in the file `avatar_context.xml` . The default implementation is based on Gravatar.
+Le choix de l'implémentation est défini dans le fichier `avatar_context.xml` . L'implémentation par défaut est celle s'appuyant sur Gravatar.
 
-Default avatars are defined in the file `gravatar.properties` 
+Les images par défaut proposées par Gravatar (mistery man, formes géométriques, monstres, ...) sont configurables dans le fichier `gravatar.properties` 
  `
 ```
 # avatar properties file
@@ -34,7 +34,7 @@ avatar.gravatar.default=mm
 ` 
 ## Usage
 
-This plugin is used by Digglike and ExtendComment.
+Ce plugin est utilisé dans les plugins Digglike et ExtendComment.
 
 
 [Maven documentation and reports](https://dev.lutece.paris.fr/plugins/plugin-avatar/)

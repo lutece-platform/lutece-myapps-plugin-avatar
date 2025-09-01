@@ -35,11 +35,18 @@ package fr.paris.lutece.plugins.avatar.service;
 
 import fr.paris.lutece.portal.service.util.AppPropertiesService;
 import fr.paris.lutece.util.url.UrlItem;
+import fr.paris.lutece.plugins.priority.annotation.LutecePriority;
+import jakarta.enterprise.inject.Alternative;
+
+import jakarta.enterprise.context.ApplicationScoped;
 
 
 /**
  * Gravatar provider
  */
+@ApplicationScoped
+@Alternative
+@LutecePriority( "avatar.provider.priority.avatarserver" )
 public class LuteceAvatarProvider extends AbstractAvatarProvider
 {
     private static final String PROPERTY_URL_AVATAR_SERVER = "avatar.lutece.avatarserver.url";

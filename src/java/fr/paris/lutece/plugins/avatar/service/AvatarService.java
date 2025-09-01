@@ -35,9 +35,9 @@ package fr.paris.lutece.plugins.avatar.service;
 
 import fr.paris.lutece.portal.service.plugin.Plugin;
 import fr.paris.lutece.portal.service.plugin.PluginService;
-import fr.paris.lutece.portal.service.spring.SpringContextService;
 import fr.paris.lutece.portal.service.util.AppPropertiesService;
 
+import jakarta.enterprise.inject.spi.CDI;
 
 /**
  * Avatar Service
@@ -97,7 +97,7 @@ public final class AvatarService
     private static AvatarProvider getProvider(  )
     {
         String strBean = AppPropertiesService.getProperty( PROPERTY_BEAN_PROVIDER );
-
-        return SpringContextService.getBean( strBean );
+        
+        return CDI.current().select( AvatarProvider.class ).get();
     }
 }

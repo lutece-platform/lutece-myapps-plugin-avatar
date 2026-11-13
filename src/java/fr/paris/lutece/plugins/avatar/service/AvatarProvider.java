@@ -40,7 +40,8 @@ package fr.paris.lutece.plugins.avatar.service;
 public interface AvatarProvider
 {
     /**
-     * Get HTML code to display the avatar
+     * Get HTML code to display the avatar. The image is decorative (empty alt): the caller writes the name of the
+     * person next to it
      * @param strAvatarId The avatar ID
      * @return The HTML code
      */

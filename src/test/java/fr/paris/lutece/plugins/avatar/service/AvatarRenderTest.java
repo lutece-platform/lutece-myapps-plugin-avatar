@@ -72,6 +72,19 @@ public class AvatarRenderTest extends LuteceTestCase
     }
 
     /**
+     * The avatar image is decorative, whatever the provider: its alt text is empty, the caller writes the name of the
+     * person next to it.
+     */
+    @Test
+    public void testAvatarImageIsDecorative( )
+    {
+        String strHtml = new LuteceAvatarProvider( ).getAvatar( "test@test.com" );
+
+        assertTrue( strHtml.contains( "alt=\"\"" ), strHtml );
+        assertFalse( strHtml.contains( "gravatar.com\"" ), strHtml );
+    }
+
+    /**
      * The Gravatar provider writes an image whose URL holds the hash of the email, not the email.
      */
     @Test

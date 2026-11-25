@@ -1,18 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-
     <parent>
         <artifactId>lutece-global-pom</artifactId>
         <groupId>fr.paris.lutece.tools</groupId>
         <version>8.0.1</version>
     </parent>
-
     <modelVersion>4.0.0</modelVersion>
     <groupId>fr.paris.lutece.plugins</groupId>
     <artifactId>plugin-avatar</artifactId>
     <packaging>lutece-plugin</packaging>
-    <version>2.0.0-beta-01</version>
     <name>Lutece avatar plugin</name>
-
+    <version>2.0.0</version>
+    <scm>
+        <connection>scm:git:https://github.com/lutece-platform/lutece-myapps-plugin-avatar.git</connection>
+        <developerConnection>scm:git:https://github.com/lutece-platform/lutece-myapps-plugin-avatar.git</developerConnection>
+        <tag>plugin-avatar-2.0.0-beta-01</tag>
+        <url>https://github.com/lutece-platform/lutece-myapps-plugin-avatar.git</url>
+    </scm>
     <repositories>
         <repository>
             <id>lutece</id>
@@ -21,18 +25,17 @@
             <layout>default</layout>
         </repository>
         <repository>
-            <id>luteceSnapshot</id>
-            <name>luteceSnapshot</name>
-            <url>https://dev.lutece.paris.fr/snapshot_repository</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
             <releases>
                 <enabled>false</enabled>
             </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <id>luteceSnapshot</id>
+            <name>luteceSnapshot</name>
+            <url>https://dev.lutece.paris.fr/snapshot_repository</url>
         </repository>
     </repositories>
-
     <dependencies>
         <dependency>
             <groupId>fr.paris.lutece</groupId>
@@ -40,26 +43,14 @@
             <version>[8.0.0,)</version>
             <type>lutece-core</type>
         </dependency>
-
-        <!-- JUnit -->
         <dependency>
             <groupId>fr.paris.lutece.plugins</groupId>
             <artifactId>library-lutece-unit-testing</artifactId>
             <type>jar</type>
             <scope>test</scope>
         </dependency>
-     </dependencies>
-     
-
+    </dependencies>
     <properties>
         <componentName>avatar</componentName>
     </properties>
-    
-    <scm>
-        <connection>scm:git:https://github.com/lutece-platform/lutece-myapps-plugin-avatar.git</connection>
-        <developerConnection>scm:git:https://github.com/lutece-platform/lutece-myapps-plugin-avatar.git</developerConnection>
-        <url>https://github.com/lutece-platform/lutece-myapps-plugin-avatar.git</url>
-        <tag>plugin-avatar-2.0.0-beta-01</tag>
-    </scm>
-
 </project>
